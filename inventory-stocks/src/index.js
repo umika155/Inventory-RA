@@ -12,21 +12,21 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers/rootReducer';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import firebaseConfig from './config/fbConfig';
+import fbConfig from './config/firebaseConfig'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-    rootReducer,
-    composeEnhancers(
-        applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
-        reactReduxFirebase(firebaseConfig, {
-            userProfile: 'users',
-            useFirestoreForProfile: true,
-            attachAuthIsReady: true,
-        }),
-        reduxFirestore(firebaseConfig),
-    ),
+  rootReducer,
+  composeEnhancers(
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    reactReduxFirebase(fbConfig, {
+      userProfile: 'users',
+      useFirestoreForProfile: true,
+      attachAuthIsReady: true,
+    }),
+    reduxFirestore(fbConfig),
+  ),
 );
 
 store.firebaseAuthIsReady.then(() => {

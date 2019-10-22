@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { SIGNIN } from "./routes";
+import { SIGNIN } from './routes';
 
 const PrivateRoute = props => {
   const { auth, component: Component, ...rest } = props;
@@ -11,7 +11,9 @@ const PrivateRoute = props => {
     <Route
       {...rest}
       render={props => {
-        if (!auth.uid) return <Redirect to={SIGNIN} />;
+        if (!auth.uid) {
+          return <Redirect to={SIGNIN} />;
+        }
 
         return <Component {...props} />;
       }}
@@ -26,7 +28,7 @@ PrivateRoute.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 

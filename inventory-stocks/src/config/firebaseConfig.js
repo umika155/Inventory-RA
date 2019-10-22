@@ -16,4 +16,4 @@ import 'firebase/auth'
   // Initialize Firebase
   firebase.initializeApp(fbConfig);
 
-  export default firebase
+  export default firebase;

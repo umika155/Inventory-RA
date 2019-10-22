@@ -2,8 +2,11 @@ export const SIGNUP = `/signup`;
 export const SIGNIN = `/signin`;
 
 export const DASHBOARD = `/dashboard`;
-export const HOME = `/`;
-export const ADDPRODUCT = `/addProduct`;
-export const CATEGORYLIST = `/category`;
-export const PRODUCT = `product`;
-export const SEARCH = `/dashboard`;
+export const HOME = `${DASHBOARD}/home`;
+export const ADDPRODUCT = `${DASHBOARD}/addproduct`;
+export const CATEGORYLIST = `${DASHBOARD}/categories`;
+export const PRODUCT = `${DASHBOARD}/product`;
+export const SEARCH = `${DASHBOARD}/search`;
+export const RECENT = `${DASHBOARD}/recent`;
+export const ADDFOOTPRINTS = `${DASHBOARD}/addproduct`;
+export const ADDSUPPLIER = `${DASHBOARD}/addproduct`;

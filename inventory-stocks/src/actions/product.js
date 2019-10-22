@@ -8,12 +8,12 @@ export const START_PRODUCT_ACTION = 'START_PRODUCT_ACTION';
 export const ERROR = 'ERROR';
 
 export const createProduct = product => {
-    return (dispatch, getState, {getFirestore}) => {
-        dispatch({ type: START_PRODUCT_ACTION });
-        const firestore = getFirestore();
-        const userId = getState().firebase.auth.uid;
-        return firestore
-      .collection('product')
+  return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: START_PRODUCT_ACTION });
+    const firestore = getFirestore();
+    const userId = getState().firebase.auth.uid;
+    return firestore
+      .collection('products')
       .add({
         ...product,
         userId,
@@ -26,68 +26,68 @@ export const createProduct = product => {
       .catch(err => {
         dispatch({ type: ERROR, payload: err.message });
       });
-    };
+  };
 };
 
 export const removeProduct = id => {
-    return (dispatch, getState, { getFirestore }) => {
-      dispatch({ type: START_PRODUCT_ACTION });
-      const firestore = getFirestore();
-      return firestore
-        .collection('product')
-        .doc(id)
-        .delete()
-        .then(() => {
-          dispatch({ type: DELETE_PRODUCT_SUCCESS });
-          return true;
-        })
-        .catch(err => {
-          dispatch({ type: ERROR, payload: err.message });
-        });
-    };
+  return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: START_PRODUCT_ACTION });
+    const firestore = getFirestore();
+    return firestore
+      .collection('products')
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({ type: DELETE_PRODUCT_SUCCESS });
+        return true;
+      })
+      .catch(err => {
+        dispatch({ type: ERROR, payload: err.message });
+      });
   };
+};
 
-  export const updateProduct = (id, product) => {
-    return (dispatch, getState, { getFirestore }) => {
-      dispatch({ type: START_PRODUCT_ACTION });
-      const firestore = getFirestore();
-      return firestore
-        .collection('product')
-        .doc(id)
-        .set({
-          ...product,
-        })
-        .then(() => {
-          dispatch({ type: UPDATE_PRODUCT_SUCCESS });
-          return true;
-        })
-        .catch(err => {
-          dispatch({ type: ERROR, payload: err.message });
-        });
-    };
+export const updateProduct = (id, product) => {
+  return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: START_PRODUCT_ACTION });
+    const firestore = getFirestore();
+    return firestore
+      .collection('products')
+      .doc(id)
+      .set({
+        ...product,
+      })
+      .then(() => {
+        dispatch({ type: UPDATE_PRODUCT_SUCCESS });
+        return true;
+      })
+      .catch(err => {
+        dispatch({ type: ERROR, payload: err.message });
+      });
   };
+};
 
-  export const removeCategory = category => {
-    return (dispatch, getState, { getFirestore }) => {
-      dispatch({ type: START_PRODUCT_ACTION });
-      const firestore = getFirestore();
-      return firestore
-        .collection('product')
-        .where('category', '==', category)
-        .get()
-        .then(querySnapshot => {
-          let batch = firestore.batch();
-          querySnapshot.forEach(doc => {
-            batch.delete(doc.ref);
-          });
-          return batch.commit();
-        })
-        .then(() => {
-          dispatch({ type: REMOVE_CATEGORY_SUCCESS });
-          return true;
-        })
-        .catch(err => {
-          dispatch({ type: ERROR, payload: err.message });
+export const removeCategory = category => {
+  return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: START_PRODUCT_ACTION });
+    const firestore = getFirestore();
+    return firestore
+      .collection('products')
+      .where('category', '==', category)
+      .get()
+      .then(querySnapshot => {
+        let batch = firestore.batch();
+        querySnapshot.forEach(doc => {
+          batch.delete(doc.ref);
         });
-    };
+        return batch.commit();
+      })
+      .then(() => {
+        dispatch({ type: REMOVE_CATEGORY_SUCCESS });
+        return true;
+      })
+      .catch(err => {
+        dispatch({ type: ERROR, payload: err.message });
+      });
   };
+};
