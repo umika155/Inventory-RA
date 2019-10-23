@@ -43,7 +43,7 @@ export const mainNavItems = (
         <ListItemText primary="Add New Footprint" />
       </ListItem>
     </Link>
-    <Link to={routes.ADDSUPPLIER} style={link}>
+    <Link to={routes.ADDSUPPLIERS} style={link}>
       <ListItem button>
         <ListItemIcon>
           <CardMembershipIcon />

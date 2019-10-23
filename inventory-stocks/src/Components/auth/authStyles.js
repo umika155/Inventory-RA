@@ -15,5 +15,12 @@ export const useStyles = makeStyles(theme => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(3),
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
+  input: {
+    display: "none"
   }
 }));

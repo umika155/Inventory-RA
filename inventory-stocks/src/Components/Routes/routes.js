@@ -8,5 +8,5 @@ export const CATEGORYLIST = `${DASHBOARD}/categories`;
 export const PRODUCT = `${DASHBOARD}/product`;
 export const SEARCH = `${DASHBOARD}/search`;
 export const RECENT = `${DASHBOARD}/recent`;
-export const ADDFOOTPRINTS = `${DASHBOARD}/addproduct`;
-export const ADDSUPPLIER = `${DASHBOARD}/addproduct`;
+export const ADDFOOTPRINTS = `${DASHBOARD}/addfootprint`;
+export const ADDSUPPLIERS = `${DASHBOARD}/addsupplier`;

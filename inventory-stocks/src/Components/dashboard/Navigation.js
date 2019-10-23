@@ -125,7 +125,7 @@ const Navigation = props => {
             Inventory
           </Typography>
           <Button onClick={signOut} color="inherit">
-            {user.firstName}, logout
+            {user.firstName} logout
           </Button>
         </Toolbar>
       </AppBar>

@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import * as routes from './routes';
 import Home from '../Home';
 import AddProduct from '../Products/AddProduct';
+import AddFootprint from '../Footprints/AddFootprint'
+import AddSupplier from '../Supplier/AddSupplier'
 import CategoryList from '../Category';
 import ProductList from '../Products/ProductList';
 import UpdateProduct from '../Products/UpdateProduct';
@@ -29,6 +31,14 @@ const ProductRouter = () => {
       <Route 
         path={routes.SEARCH} 
         component={Search} 
+      />
+      <Route 
+        path={routes.ADDFOOTPRINTS} 
+        component={AddFootprint} //change 
+      />
+      <Route 
+        path={routes.ADDSUPPLIERS} 
+        component={AddSupplier} //change 
       />
       <Route
         exact

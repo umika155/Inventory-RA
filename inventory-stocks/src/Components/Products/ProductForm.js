@@ -7,34 +7,11 @@ import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
 import FormButton from "../shared/FormButton";
 import SerialsList from "../shared/SerialsList";
+import { useStyles } from '../auth/authStyles';
 
 //import 'materialize-css/dist/css/materialize.min.css';
-
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  dense: {
-    marginTop: theme.spacing(2),
-  },
-  menu: {
-    width: 200,
-  },
-  button: {
-    margin: theme.spacing(1)
-  },
-  input: {
-    display: "none"
-  }
-}));
 
 const ProductForm = props => {
   const currencies = [
@@ -162,19 +139,7 @@ const ProductForm = props => {
             </Button>
           </label>
         </div>
-        {/* <div className="file-field input-field">
-            <div className="btn">
-              <span>File</span>
-              <input type="file" multiple />
-            </div>
-            <div className="file-path-wrapper">
-              <input
-                className="file-path validate"
-                type="text"
-                placeholder="Upload one or more files"
-              />
-            </div>
-          </div> */}
+        
         <TextField
           variant="outlined"
           margin="normal"
@@ -238,7 +203,7 @@ const ProductForm = props => {
           onChange={inputChange}
           value={product.voltage}
           InputProps={{
-            endAdornment: <InputAdornment position="end">V</InputAdornment>,
+            startAdornment: <InputAdornment position="start">V</InputAdornment>,
           }}
         />
         <TextField
@@ -253,7 +218,7 @@ const ProductForm = props => {
           onChange={inputChange}
           value={product.watts}
           InputProps={{
-            endAdornment: <InputAdornment position="end">W</InputAdornment>,
+            startAdornment: <InputAdornment position="start">W</InputAdornment>,
           }}
         />
         <TextField
@@ -323,8 +288,8 @@ const ProductForm = props => {
           select
           label="Footprint"
           className={classes.textField}
-          value={values.currency}
-          onChange={handleChange("currency")}
+          value={values.footprint}
+          onChange={handleChange("footprint")}
           SelectProps={{
             MenuProps: {
               className: classes.menu
@@ -333,7 +298,7 @@ const ProductForm = props => {
           helperText="Please select your footprint"
           margin="normal"
         >
-          {currencies.map(option => (
+          {footprint.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
