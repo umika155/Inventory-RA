@@ -13,7 +13,7 @@ const CategoryList = props => {
   const [setCategory] = "";
 
   const addCategory = () => {
-      setCategory("");
+      alert('This button does nothing.')
   };
 
   const { categories } = props;

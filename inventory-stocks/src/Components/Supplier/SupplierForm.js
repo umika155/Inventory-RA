@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import TextField from "@material-ui/core/TextField";
@@ -13,7 +13,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 const SupplierForm = props => {
     const classes = useStyles();
-    const { addSupplier, isLoading, productById } = props;
+    const { update, addSupplier, isLoading } = props;
 
     const [ supplier, setSupplier ] = useState({
         name: '',
@@ -48,20 +48,10 @@ const SupplierForm = props => {
 
     const [ error, setError ] = useState();
 
-    useEffect(() => {
-        if (productById) {
-            setSupplier(prev => ({
-                ...prev,
-                ...productById,
-                updateAt: new Date(),
-            }));
-        }
-    }, [productById]);
-
     const handleSubmit = e => {
         e.preventDefault();
-        const { name, description } = supplier;
-        const formIsValid = name.trim() && description.trim();
+        const { name, description, address, contact, price } = supplier;
+        const formIsValid = name.trim() && description.trim() && address.trim() && contact.trim() && price.trim();
         if(formIsValid){
             setError('');
             return chooseFormAction();
@@ -70,7 +60,11 @@ const SupplierForm = props => {
     };
 
     const chooseFormAction = () => {
-        addSupplier(supplier);
+        if(!props.update){
+            addSupplier(supplier);
+        } else {
+            update(supplier)
+        }
     };
 
     const inputChange = ({ target }) => {
@@ -83,7 +77,6 @@ const SupplierForm = props => {
         <Container component="main" >
             <form className={classes.form} onSubmit={handleSubmit}>
                 {error && <p>{error}</p>}
-
                 <TextField 
                     variant="outlined"
                     margin="normal"
@@ -162,7 +155,7 @@ const SupplierForm = props => {
 
 const mapStateToProps = state => {
     return{
-        isLoading: state.supplier.isLoading,
+        isLoading: state.suppliers.isLoading,
     };
 };
 

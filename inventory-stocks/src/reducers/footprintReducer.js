@@ -17,6 +17,7 @@ import {
       case START_FOOTPRINT_ACTION:
         return { ...state, error: null, isLoading: true };
       case ADD_FOOTPRINT_SUCCESS:
+        console.log('created footprint', action.footprint)
         return { ...state, error: null, isLoading: false };
       case GET_FOOTPRINT_SUCCESS:
         return { ...state, error: null, isLoading: false, FOOTPRINT: action.payload };

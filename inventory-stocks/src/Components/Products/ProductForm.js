@@ -9,6 +9,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormButton from "../shared/FormButton";
 import SerialsList from "../shared/SerialsList";
+import ImageList from '../shared/ImageList';
+import ImageUploader from '../ImageUploader'
 import { useStyles } from '../auth/authStyles';
 
 //import 'materialize-css/dist/css/materialize.min.css';
@@ -48,6 +50,7 @@ const ProductForm = props => {
   const { update, addProduct, categoryName, productById, isLoading } = props;
 
   const [serial, setSerial] = useState("");
+  const [image, setImage] = useState("");
   const [product, setProduct] = useState({
     name: "",
     partNumber: "",
@@ -61,7 +64,9 @@ const ProductForm = props => {
     price: "",
     serials: [],
     category: "",
-    description: ""
+    description: "",
+    images: [],
+    imageURL: ''
   });
 
   const [error, setError] = useState("");
@@ -117,17 +122,46 @@ const ProductForm = props => {
     }
   };
 
+  // const imageRef = firebase.storage().ref('catalog').child(name + '/' + uid);
+
+  // const uploadImage = () => {
+  //   if (image.length > 2) {
+  //     setImage("");
+  //     setProduct(prev => ({
+  //       ...prev,
+  //       images: [...prev.images, image]
+  //     }));
+  //   }
+  // };
+
+  // const handleUploadSuccess = filename => {
+  //   setProduct(prev => ({
+  //     ...prev,
+  //     images: filename
+  //   }));
+    
+  //   imageRef.getDownloadURL()
+  //     .then(url => {
+  //       imageURL: url
+  //     })
+
+  // }
+
   return (
     <Container component="main">
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
         {error && <p>{error}</p>}
-        <div class="file-field input-field">
+        <ImageUploader />
+        {/* <div class="file-field input-field">
           <input
             accept="image/*"
-            className={classes.input}
+            name="image"
+            className=""
             id="outlined-button-file"
             multiple
             type="file"
+            storageRef={firebase.storage().ref('productImages')}
+            
           />
           <label htmlFor="outlined-button-file">
             <Button
@@ -138,7 +172,7 @@ const ProductForm = props => {
               Upload
             </Button>
           </label>
-        </div>
+        </div> */}
         
         <TextField
           variant="outlined"
@@ -326,6 +360,34 @@ const ProductForm = props => {
             </MenuItem>
           ))}
         </TextField>
+
+        {/* <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          accept="image/*"
+          multiple
+          fullWidth
+          type="file"
+          id="image"
+          label="Product Image"
+          name="image"
+          autoComplete="image"
+          value={image}
+          onChange={e => setImage(e.target.value)}
+        />
+        <Grid container justify="flex-end">
+          <Button
+            size="small"
+            variant="outlined"
+            color="primary"
+            // onClick={uploadImage}
+          >
+            Add Image
+          </Button>
+        </Grid>
+
+        <ImageList images={product.images} /> */}
 
         <TextField
           variant="outlined"

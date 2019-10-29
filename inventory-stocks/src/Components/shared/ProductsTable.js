@@ -41,20 +41,21 @@ const ProductsTable = props => {
         <Table size="medium">
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
+              <TableCell>Image</TableCell>
               <TableCell>Product Name</TableCell>
-              <TableCell>Product Model</TableCell>
+              <TableCell>Product Description</TableCell>
+              <TableCell>Product Footprint</TableCell>
               <TableCell>Product Category</TableCell>
-              <TableCell>Number of Products</TableCell>
+              <TableCell>In Stocks</TableCell>
+              <TableCell>No of Serials</TableCell>
+              <TableCell>Date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {products && products.length > 0 ? (
               products.map(product => (
                 <TableRow key={product.id}>
-                  <TableCell>
-                    {Moment(product.createdAt.toDate()).format('Do MMMM YY')}
-                  </TableCell>
+                  <TableCell>Image here</TableCell>
                   <TableCell>
                     <Link
                       to={`${DASHBOARD}/${product.name}/${product.id}`}
@@ -64,7 +65,8 @@ const ProductsTable = props => {
                       {product.name}
                     </Link>
                   </TableCell>
-                  <TableCell>{product.model}</TableCell>
+                  <TableCell>{product.description}</TableCell>
+                  <TableCell>{product.footprint}</TableCell>
                   <TableCell>
                     <Link
                       to={`${DASHBOARD}/${product.category}`}
@@ -74,7 +76,11 @@ const ProductsTable = props => {
                       {product.category}
                     </Link>
                   </TableCell>
+                  <TableCell>{product.qty}</TableCell>
                   <TableCell>{product.serials.length}</TableCell>
+                  <TableCell>
+                    {Moment(product.createdAt.toDate()).format('Do MMMM YY')}
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
