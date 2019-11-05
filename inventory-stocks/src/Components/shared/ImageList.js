@@ -1,7 +1,4 @@
 import React from 'react';
-import firebase from "firebase";
-import FileUploader from "react-firebase-file-uploader";
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
